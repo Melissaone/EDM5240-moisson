@@ -1,0 +1,33 @@
+# coding: utf-8
+
+import csv
+import requests
+from bs4 import BeautifulSoup
+
+fichier = "missions.csv"
+
+url = "https://www.nasa.gov/missions"
+
+entetes = {
+	"User-Agent : Tiffany Toussaint"
+	"From : cg491001@ens.uq-8am.ca"
+}
+
+contenu = requests.get(url,headers=entetes)
+
+page = BeautifulSoup(contenu.text,encode("latin-1").decode("utf-8"),"html.parser")
+
+print()
+missions = page.find_all(class_="clickable")
+
+for mission in missions:
+	print(mission)
+	print(page.find("div", class_"static-landing-page").find_next("url").find_all)
+	href = (mission.find("a").["href"].text)
+	titre = (mission.find("href").["> <"]
+	infos = [href,titre]
+	print("><"*30)
+
+	nasa = open(fichier,"a")
+	etoiles = vsc.writer(nasa)
+	etoiles.writerow(infos)
